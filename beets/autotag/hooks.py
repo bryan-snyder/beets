@@ -26,6 +26,7 @@ from beets import config
 from beets.autotag import mb
 from jellyfish import levenshtein_distance
 from unidecode import unidecode
+import six
 
 log = logging.getLogger('beets')
 
@@ -204,8 +205,8 @@ def _string_dist_basic(str1, str2):
     transliteration/lowering to ASCII characters. Normalized by string
     length.
     """
-    assert isinstance(str1, unicode)
-    assert isinstance(str2, unicode)
+    assert isinstance(str1, six.text_type)
+    assert isinstance(str2, six.text_type)
     str1 = unidecode(str1).decode('ascii')
     str2 = unidecode(str2).decode('ascii')
     str1 = re.sub(r'[^a-z0-9]', '', str1.lower())
