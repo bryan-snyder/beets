@@ -326,7 +326,7 @@ class Distance(object):
         """Return the maximum distance penalty (normalization factor).
         """
         dist_max = 0.0
-        for key, penalty in self._penalties.iteritems():
+        for key, penalty in six.iteritems(self._penalties):
             dist_max += len(penalty) * self._weights[key]
         return dist_max
 
@@ -335,7 +335,7 @@ class Distance(object):
         """Return the raw (denormalized) distance.
         """
         dist_raw = 0.0
-        for key, penalty in self._penalties.iteritems():
+        for key, penalty in six.iteritems(self._penalties):
             dist_raw += sum(penalty) * self._weights[key]
         return dist_raw
 
@@ -407,7 +407,7 @@ class Distance(object):
             raise ValueError(
                 u'`dist` must be a Distance object, not {0}'.format(type(dist))
             )
-        for key, penalties in dist._penalties.iteritems():
+        for key, penalties in six.iteritems(dist._penalties):
             self._penalties.setdefault(key, []).extend(penalties)
 
     # Adding components.
